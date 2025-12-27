@@ -143,21 +143,20 @@ local rules = {
 }
 
 local function find_errors(line, rule)
-    if type(rule.regex) == 'string' then
-        local re = vim.regex(rule.regex)
+    local errors = {}
+    for _, r in ipairs(rule) do
+        local re = vim.regex(r[2])
 
         local col = re:match_str(line)
 
-        return col
-    else
-        for _, regex in ipairs(rule.regex) do
-            local re = vim.regex(regex)
-
-            local col = re:match_str(line)
-
-            return col
+        if col then
+            table.insert(errors, {
+                col = col,
+                text = r[1],
+            })
         end
     end
+    return errors
 end
 
 function M.check()
@@ -167,16 +166,18 @@ function M.check()
     for nr, line in ipairs(lines) do
         for err, rule in pairs(rules) do
             if not vim.tbl_contains(ignored_errors, err) then
-                local col = find_errors(line, rule)
-                if col then
-                    table.insert(lint_results, {
-                        bufnr = bufnr,
-                        lnum = nr,
-                        col = col,
-                        text = rule.desc,
-                        type = 'E',
-                        nr = err,
-                    })
+                local errors = find_errors(line, rule)
+                if #errors > 0 then
+                    for _, error in ipairs(errors) do
+                        table.insert(lint_results, {
+                            bufnr = bufnr,
+                            lnum = nr,
+                            col = error.col,
+                            text = err .. ' ' .. error.text,
+                            type = 'E',
+                            nr = tonumber(string.sub(err, 2)),
+                        })
+                    end
                 end
             end
         end
