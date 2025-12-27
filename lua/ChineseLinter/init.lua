@@ -1,20 +1,20 @@
 local M = {}
-local punctuation_en = '[､,:;?!-]'
+local punctuation_en = "[､,:;?!-]"
 
 -- 中文标点符号
-local punctuation_cn = '[、，：；。？！‘’“”（）《》『』＂＇／＜＞＝［］｛｝【】]'
+local punctuation_cn = "[、，：；。？！‘’“”（）《》『』＂＇／＜＞＝［］｛｝【】]"
 
 -- 中文汉字
-local chars_cn = '[\\u4e00-\\u9fff]'
+local chars_cn = "[\\u4e00-\\u9fff]"
 
 -- 数字
-local numbers = '[0-9]'
+local numbers = "[0-9]"
 
 -- 全角数字
-local numbers_cn = '[\\uff10-\\uff19]'
+local numbers_cn = "[\\uff10-\\uff19]"
 
 -- 英文字母
-local chars_en = '[a-zA-Z]'
+local chars_en = "[a-zA-Z]"
 
 local rules = {
 	E001 = {
@@ -56,7 +56,11 @@ function M.check()
 
 	vim.fn.setqflist(lint_results)
 
-	vim.cmd("copen")
+	if #lint_results > 0 then
+		vim.cmd("copen")
+	else
+		vim.cmd("cclose")
+	end
 end
 
 function M.setup(opt)
