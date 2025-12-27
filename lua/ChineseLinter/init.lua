@@ -1,9 +1,25 @@
 local M = {}
+local punctuation_en = '[､,:;?!-]'
+
+-- 中文标点符号
+local punctuation_cn = '[、，：；。？！‘’“”（）《》『』＂＇／＜＞＝［］｛｝【】]'
+
+-- 中文汉字
+local chars_cn = '[\\u4e00-\\u9fff]'
+
+-- 数字
+local numbers = '[0-9]'
+
+-- 全角数字
+local numbers_cn = '[\\uff10-\\uff19]'
+
+-- 英文字母
+local chars_en = '[a-zA-Z]'
 
 local rules = {
 	E001 = {
 		enable = true,
-		regex = [[]],
+		regex = chars_cn .. punctuation_en,
 		desc = "中文字符后存在英文标点",
 	},
 }
