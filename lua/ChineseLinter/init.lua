@@ -2,7 +2,7 @@ local M = {}
 
 local ignored_errors = {}
 
-local CHINESE_PUNCTUATION = '[\\u2010-\\u201f\\u2026\\uff01-\\uff0f\\uff1a-\\uff1f\\uff3b-\\uff40\\uff5b-\\uff5e]'
+local chinese_punctuation = '[\\u2010-\\u201f\\u2026\\uff01-\\uff0f\\uff1a-\\uff1f\\uff3b-\\uff40\\uff5b-\\uff5e]'
 
 local punctuation_en = '[､,:;?!-]'
 
@@ -47,11 +47,11 @@ local rules = {
     E004 = {
         {
             '中文标点前存在空格',
-            blank .. '\\+\\ze' .. CHINESE_PUNCTUATION,
+            blank .. '\\+\\ze' .. chinese_punctuation,
         },
         {
             '中文标点后存在空格',
-            CHINESE_PUNCTUATION .. '\\zs' .. blank .. '\\+',
+            chinese_punctuation .. '\\zs' .. blank .. '\\+',
         },
     },
     --   'E005' : [
