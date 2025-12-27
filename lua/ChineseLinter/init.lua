@@ -25,11 +25,21 @@ local rules = {
 }
 
 local function find_errors(line, rule)
-	local re = vim.regex(rule.regex)
+	if type(rule.regex) == "string" then
+		local re = vim.regex(rule.regex)
 
-	local col = re:match_str(line)
+		local col = re:match_str(line)
 
-	return col
+		return col
+	else
+		for _, regex in ipairs(rule.regex) do
+			local re = vim.regex(regex)
+
+			local col = re:match_str(line)
+
+			return col
+		end
+	end
 end
 
 function M.check()
