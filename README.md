@@ -1,4 +1,4 @@
-# ChineseLinter.nvim
+# chineselinter.nvim
 
 > 中文文档语言规范检查工具
 
@@ -8,7 +8,7 @@
 
 ```lua
 require("plug").add({ {
-	"wsdjeg/ChineseLinter.nvim",
+	"wsdjeg/chineselinter.nvim",
 } })
 ```
 
@@ -51,7 +51,7 @@ require("plug").add({ {
 如果需要忽略某些错误，可以将错误代码加入 `ignored_errors`
 
 ```lua
-require('ChineseLinter').setup({
+require('chineselinter').setup({
     ignored_errors = { 'E013' },
 })
 ```
