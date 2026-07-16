@@ -2,6 +2,13 @@
 
 > 中文文档语言规范检查工具
 
+[![Run Tests](https://github.com/wsdjeg/chineselinter.nvim/actions/workflows/test.yml/badge.svg)](https://github.com/wsdjeg/chineselinter.nvim/actions/workflows/test.yml)
+[![GitHub License](https://img.shields.io/github/license/wsdjeg/chineselinter.nvim)](LICENSE)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/wsdjeg/chineselinter.nvim)](https://github.com/wsdjeg/chineselinter.nvim/issues)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wsdjeg/chineselinter.nvim)](https://github.com/wsdjeg/chineselinter.nvim/commits/master/)
+[![GitHub Release](https://img.shields.io/github/v/release/wsdjeg/chineselinter.nvim)](https://github.com/wsdjeg/chineselinter.nvim/releases)
+[![luarocks](https://img.shields.io/luarocks/v/wsdjeg/chineselinter.nvim)](https://luarocks.org/modules/wsdjeg/chineselinter.nvim)
+
 ## 安装
 
 使用 [nvim-plug](https://github.com/wsdjeg/nvim-plug)
@@ -43,8 +50,8 @@ require("plug").add({ {
 | `E017` | 数字之间存在空格                |
 | `E018` | 行首含有空格                    |
 | `E019` | 行首、行尾存在不应出现的标点    |
-| `E020` | 省略号“…”的数量不是 2 个        |
-| `E021` | 破折号“—”的数量不是 2 个        |
+| `E020` | 省略号"…"的数量不是 2 个        |
+| `E021` | 破折号"-"的数量不是 2 个        |
 
 ## 配置
 
@@ -59,3 +66,4 @@ require('chineselinter').setup({
 ## 参考指南：
 
 - [中文文案排版指北（简体中文版）](https://github.com/mzlogin/chinese-copywriting-guidelines)
+
